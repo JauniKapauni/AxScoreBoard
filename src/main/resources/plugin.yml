@@ -1,0 +1,11 @@
+name: AxScoreBoard
+description: $description
+prefix: AxScoreBoard
+version: '${version}'
+
+main: de.jaunikapauni.axscoreboard.AxScoreBoard
+api-version: '26.1.2'
+load: POSTWORLD
+
+authors: [ JauniKapauni ]
+website: https://github.com/JauniKapauni
