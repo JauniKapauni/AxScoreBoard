@@ -1,0 +1,48 @@
+scoreboard:
+  title:
+    value: "TITLE"
+  line1:
+    value: "LINE1"
+    score: 1
+  line2:
+    value: "LINE2"
+    score: 2
+  line3:
+    value: "LINE3"
+    score: 3
+  line4:
+    value: "LINE4"
+    score: 4
+  line5:
+    value: "LINE5"
+    score: 5
+  line6:
+    value: "LINE6"
+    score: 6
+  line7:
+    value: "LINE7"
+    score: 7
+  line8:
+    value: "LINE8"
+    score: 8
+  line9:
+    value: "LINE9"
+    score: 9
+  line10:
+    value: "LINE10"
+    score: 10
+  line11:
+    value: "LINE11"
+    score: 11
+  line12:
+    value: "LINE12"
+    score: 12
+  line13:
+    value: "LINE13"
+    score: 13
+  line14:
+    value: "LINE14"
+    score: 14
+  line15:
+    value: "LINE15"
+    score: 15
