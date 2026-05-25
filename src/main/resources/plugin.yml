@@ -12,3 +12,6 @@ website: https://github.com/JauniKapauni
 
 softdepend:
   - PlaceholderAPI
+
+commands:
+  reload:

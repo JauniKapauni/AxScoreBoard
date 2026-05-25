@@ -1,5 +1,6 @@
 package de.jaunikapauni.axscoreboard;
 
+import de.jaunikapauni.axscoreboard.command.ReloadCommand;
 import de.jaunikapauni.axscoreboard.listener.PlayerJoinListener;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
@@ -24,6 +25,7 @@ public final class AxScoreBoard extends JavaPlugin {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         createLangFile();
+        getCommand("reload").setExecutor(new ReloadCommand(this));
     }
 
     @Override
@@ -57,5 +59,9 @@ public final class AxScoreBoard extends JavaPlugin {
         for (int i = 1; i < 15; i++) {
             objective.getScore(PlaceholderAPI.setPlaceholders(p, getValue("scoreboard" + "." + "line" + i + "." + "value"))).setScore(getScore("scoreboard" + "." + "line" + i + "." + "score"));
         }
+    }
+
+    public void reloadLangFile(){
+        langConfig = YamlConfiguration.loadConfiguration(langFile);
     }
 }
