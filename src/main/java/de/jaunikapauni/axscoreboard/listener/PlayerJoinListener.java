@@ -28,21 +28,9 @@ public class PlayerJoinListener implements Listener {
         Objective objective = board.registerNewObjective("sidebar", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.title.value")));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line1.value"))).setScore(reference.getScore("scoreboard.line1.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line2.value"))).setScore(reference.getScore("scoreboard.line2.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line3.value"))).setScore(reference.getScore("scoreboard.line3.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line4.value"))).setScore(reference.getScore("scoreboard.line4.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line5.value"))).setScore(reference.getScore("scoreboard.line5.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line6.value"))).setScore(reference.getScore("scoreboard.line6.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line7.value"))).setScore(reference.getScore("scoreboard.line7.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line8.value"))).setScore(reference.getScore("scoreboard.line8.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line9.value"))).setScore(reference.getScore("scoreboard.line9.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line10.value"))).setScore(reference.getScore("scoreboard.line10.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line11.value"))).setScore(reference.getScore("scoreboard.line11.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line12.value"))).setScore(reference.getScore("scoreboard.line12.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line13.value"))).setScore(reference.getScore("scoreboard.line13.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line14.value"))).setScore(reference.getScore("scoreboard.line14.score"));
-        objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard.line15.value"))).setScore(reference.getScore("scoreboard.line15.score"));
+        for (int i = 1; i < 15; i++) {
+            objective.getScore(PlaceholderAPI.setPlaceholders(p, reference.getValue("scoreboard" + "." + "line" + i + "." + "value"))).setScore(reference.getScore("scoreboard" + "." + "line" + i + "." + "score"));
+        }
 
         p.setScoreboard(board);
     }
