@@ -26,6 +26,14 @@ public final class AxScoreBoard extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         createLangFile();
         getCommand("reload").setExecutor(new ReloadCommand(this));
+        Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
+            @Override
+            public void run() {
+                for(Player p : Bukkit.getOnlinePlayers()){
+                    setScoreboard(p);
+                }
+            }
+        }, 20L, 20L);
     }
 
     @Override
