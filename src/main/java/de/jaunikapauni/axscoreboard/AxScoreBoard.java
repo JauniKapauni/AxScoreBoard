@@ -59,6 +59,7 @@ public final class AxScoreBoard extends JavaPlugin {
         for (int i = 1; i < 15; i++) {
             objective.getScore(PlaceholderAPI.setPlaceholders(p, getValue("scoreboard" + "." + "line" + i + "." + "value"))).setScore(getScore("scoreboard" + "." + "line" + i + "." + "score"));
         }
+        p.setScoreboard(board);
     }
 
     public void reloadLangFile(){
