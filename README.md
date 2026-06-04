@@ -1,6 +1,10 @@
 # AxScoreBoard
 > Minecraft plugin to create and customize a scoreboard
 ---
+## Requirements
+- Minecraft Paper 26.1.2 Server
+- PlaceholderAPI
+---
 ## Features
 - PlaceholderAPI support
 - Customize every line and score
