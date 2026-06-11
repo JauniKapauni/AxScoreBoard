@@ -68,6 +68,9 @@ scoreboard:
     score: 15
 ```
 ---
+## Commands & Permissions
+- `/reload` - `axscoreboard.reload`
+---
 ## Support
 Discord: [AxForge](https://discord.gg/rYSxV4daS8)
 ---
