@@ -4,6 +4,7 @@ import de.jaunikapauni.axscoreboard.command.ReloadCommand;
 import de.jaunikapauni.axscoreboard.listener.PlayerJoinListener;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -72,7 +73,7 @@ public final class AxScoreBoard extends JavaPlugin {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.title.value")));
         for (int i = 1; i < 15; i++) {
-            objective.getScore(PlaceholderAPI.setPlaceholders(p, getValue("scoreboard" + "." + "line" + i + "." + "value"))).setScore(getScore("scoreboard" + "." + "line" + i + "." + "score"));
+            objective.getScore(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, getValue("scoreboard" + "." + "line" + i + "." + "value")))).setScore(getScore("scoreboard" + "." + "line" + i + "." + "score"));
         }
         p.setScoreboard(board);
     }
