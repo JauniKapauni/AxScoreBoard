@@ -58,6 +58,9 @@ public final class AxScoreBoard extends JavaPlugin {
         if(objective == null){
             return;
         }
+        for(String entry : scoreboard.getEntries()){
+            scoreboard.resetScores(entry);
+        }
         objective.setDisplayName(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.title.value"))));
         for(int i = 1; i < 15; i++){
             String text = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.line" + i + ".value")));
