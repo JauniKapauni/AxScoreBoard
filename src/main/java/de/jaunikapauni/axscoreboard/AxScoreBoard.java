@@ -2,6 +2,7 @@ package de.jaunikapauni.axscoreboard;
 
 import de.jaunikapauni.axscoreboard.command.ReloadCommand;
 import de.jaunikapauni.axscoreboard.listener.PlayerJoinListener;
+import de.jaunikapauni.axscoreboard.listener.PlayerQuitListener;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -30,6 +31,7 @@ public final class AxScoreBoard extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         createLangFile();
         getCommand("reload").setExecutor(new ReloadCommand(this));
         Bukkit.getScheduler().runTaskTimer(this, () -> {
