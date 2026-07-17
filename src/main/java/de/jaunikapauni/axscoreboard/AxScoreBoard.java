@@ -38,7 +38,7 @@ public final class AxScoreBoard extends JavaPlugin {
             for(Player p : Bukkit.getOnlinePlayers()){
                 updateScoreboard(p);
             }
-        }, 100L, 100L);
+        }, 0, 20L);
         getLogger().info("");
         getLogger().info("----------------------------------------");
         getLogger().info("Name: " + getName());
