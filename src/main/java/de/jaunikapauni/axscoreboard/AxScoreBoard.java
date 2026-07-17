@@ -13,6 +13,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.HashMap;
@@ -99,5 +100,9 @@ public final class AxScoreBoard extends JavaPlugin {
 
     public void reloadLangFile(){
         langConfig = YamlConfiguration.loadConfiguration(langFile);
+    }
+
+    public void removeScoreboard(@NotNull Player player) {
+        scoreboards.remove(player.getUniqueId());
     }
 }
