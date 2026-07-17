@@ -15,11 +15,15 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public final class AxScoreBoard extends JavaPlugin {
 
     private File langFile;
     private FileConfiguration langConfig;
+    Map<UUID, Scoreboard> scoreboards = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -27,14 +31,11 @@ public final class AxScoreBoard extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         createLangFile();
         getCommand("reload").setExecutor(new ReloadCommand(this));
-        Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
-            @Override
-            public void run() {
-                for(Player p : Bukkit.getOnlinePlayers()){
-                    setScoreboard(p);
-                }
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            for(Player p : Bukkit.getOnlinePlayers()){
+                updateScoreboard(p);
             }
-        }, 20L, 20L);
+        }, 100L, 100L);
         getLogger().info("");
         getLogger().info("----------------------------------------");
         getLogger().info("Name: " + getName());
@@ -42,6 +43,23 @@ public final class AxScoreBoard extends JavaPlugin {
         getLogger().info(String.join("Authors: " + ", ", getDescription().getAuthors()));
         getLogger().info("----------------------------------------");
         getLogger().info("");
+    }
+
+    private void updateScoreboard(Player p) {
+        Scoreboard scoreboard = scoreboards.get(p.getUniqueId());
+        if(scoreboard == null){
+            setScoreboard(p);
+            return;
+        }
+        Objective objective = scoreboard.getObjective("sidebar");
+        if(objective == null){
+            return;
+        }
+        objective.setDisplayName(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.title.value"))));
+        for(int i = 1; i < 15; i++){
+            String text = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.line" + i + ".value")));
+            objective.getScore(text).setScore(getScore("scoreboard.line" + i + ".score"));
+        }
     }
 
     @Override
@@ -66,16 +84,17 @@ public final class AxScoreBoard extends JavaPlugin {
     }
 
     public void setScoreboard(Player p){
-        ScoreboardManager manager = Bukkit.getScoreboardManager();
-        Scoreboard board = manager.getNewScoreboard();
-
-        Objective objective = board.registerNewObjective("sidebar", "dummy");
+        ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = scoreboardManager.getNewScoreboard();
+        Objective objective = scoreboard.registerNewObjective("siderbar", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.title.value")));
-        for (int i = 1; i < 15; i++) {
-            objective.getScore(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, getValue("scoreboard" + "." + "line" + i + "." + "value")))).setScore(getScore("scoreboard" + "." + "line" + i + "." + "score"));
+        for(int i = 1; i < 15; i++){
+            String text = PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.line" + i + ".value"));
+            objective.getScore(ChatColor.translateAlternateColorCodes('&', text)).setScore(getScore("scoreboard.line" + i + ".score"));
         }
-        p.setScoreboard(board);
+        scoreboards.put(p.getUniqueId(), scoreboard);
+        p.setScoreboard(scoreboard);
     }
 
     public void reloadLangFile(){
