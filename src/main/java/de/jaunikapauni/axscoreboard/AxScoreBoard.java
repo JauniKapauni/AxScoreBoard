@@ -89,7 +89,7 @@ public final class AxScoreBoard extends JavaPlugin {
     public void setScoreboard(Player p){
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = scoreboardManager.getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("siderbar", "dummy");
+        Objective objective = scoreboard.registerNewObjective("sidebar", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(PlaceholderAPI.setPlaceholders(p, getValue("scoreboard.title.value")));
         for(int i = 1; i < 15; i++){
