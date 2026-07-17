@@ -48,7 +48,7 @@ public final class AxScoreBoard extends JavaPlugin {
         getLogger().info("");
     }
 
-    private void updateScoreboard(Player p) {
+    public void updateScoreboard(Player p) {
         Scoreboard scoreboard = scoreboards.get(p.getUniqueId());
         if(scoreboard == null){
             setScoreboard(p);

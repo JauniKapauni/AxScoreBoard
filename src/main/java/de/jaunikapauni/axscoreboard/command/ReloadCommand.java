@@ -27,7 +27,7 @@ public class ReloadCommand implements CommandExecutor {
         }
         reference.reloadLangFile();
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            reference.setScoreboard(onlinePlayer);
+            reference.updateScoreboard(onlinePlayer);
         }
         sender.sendMessage("lang.yml reloaded!");
         return true;
